@@ -19,7 +19,7 @@ import static org.junit.Assert.assertTrue;
  */
 public class DownloadManagerTest {
 
-    private static final String FILE_DESTINATION = "/Users/amithnair/Documents/test_download/http.svg";
+    private static final String FILE_DESTINATION = "http.svg";
     private static final String DOWNLOAD_URL = "http://httpwg.org/asset/http.svg";
 
     private HttpFile httpFile;
