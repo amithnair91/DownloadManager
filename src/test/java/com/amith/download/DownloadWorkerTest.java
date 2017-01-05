@@ -7,10 +7,12 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
+import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertTrue;
 
 /**
@@ -18,15 +20,20 @@ import static junit.framework.TestCase.assertTrue;
  */
 public class DownloadWorkerTest {
 
-    private static final String FILE_DESTINATION = "/Users/amithnair/Documents/test_download/image.png";
+    private static final String TEMP_DIR_NAME = "temp-download";
     private static final String DOWNLOAD_URL = "http://httpwg.org/asset/http.svg";
+    private String fileName = "http.svg";
 
     private HttpFile httpFile;
     private File file;
+    private String fileDestination;
+    private Path tempDirPath;
 
     @Before
-    public void setup() throws MalformedURLException {
-        httpFile = new HttpFile(new URL(DOWNLOAD_URL), FILE_DESTINATION);
+    public void setup() throws IOException {
+        tempDirPath = Files.createTempDirectory(TEMP_DIR_NAME);
+        fileDestination =  tempDirPath.toAbsolutePath().toString().concat(fileName);
+        httpFile = new HttpFile(new URL(DOWNLOAD_URL), fileDestination);
     }
 
 
@@ -35,14 +42,16 @@ public class DownloadWorkerTest {
         DownloadWorker worker = new DownloadWorker(httpFile, new HttpConnection(httpFile));
         Thread workerThread = new Thread(worker);
         workerThread.start();
-        Thread.sleep(3000);
+        Thread.sleep(5000);
         file = new File(httpFile.getFilePath());
         assertTrue(file.exists());
+        assertEquals(2771, httpFile.getDownloadedFileSize());
     }
 
     @After
     public void tearDown() {
         file.deleteOnExit();
+        tempDirPath.toFile().delete();
     }
 
 
