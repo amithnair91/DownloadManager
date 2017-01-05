@@ -1,0 +1,16 @@
+default: run
+
+clean:
+	./gradlew clean
+
+compile:
+	./gradlew createJar
+
+test:
+	./gradlew test
+
+build:
+	./gradlew clean build
+
+run: build
+	java -jar 'build/libs/DownloadManager-all-1.0.jar' $(url) $(location)

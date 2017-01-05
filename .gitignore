@@ -1,0 +1,7 @@
+.gradle/
+.idea/
+build/
+/DownloadManager.iml
+/DownloadManager.ipr
+/DownloadManager.iws
+.DS_Stor

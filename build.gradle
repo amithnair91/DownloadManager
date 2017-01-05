@@ -1,0 +1,29 @@
+group 'DownloadManager'
+version '1.0'
+
+apply plugin: 'java'
+apply plugin: 'application'
+
+mainClassName = 'com.amith.Driver'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+task createJar(type: Jar) {
+    manifest {
+        attributes 'Main-Class': 'com.amith.Driver'
+    }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
+
