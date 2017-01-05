@@ -30,6 +30,10 @@ public class CommandLineParser {
 
     private String extractFilePath(String url, String directoryPath) {
         String fileName = url.substring(url.lastIndexOf("/"));
-        return new File(directoryPath, fileName).getAbsolutePath();
+        if (new File(directoryPath).isDirectory()) {
+            return new File(directoryPath, fileName).getAbsolutePath();
+        }else{
+            return new File(directoryPath).getAbsolutePath();
+        }
     }
 }

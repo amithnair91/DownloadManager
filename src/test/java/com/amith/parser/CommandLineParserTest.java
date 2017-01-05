@@ -32,6 +32,23 @@ public class CommandLineParserTest {
     }
 
     @Test
+    public void shouldPopulateFileNameIfSecondArgumentIsADirectory(){
+        String expected = CURRENT_DIRECTORY + "/dynamodb_local_2016-05-17.zip";
+        assertEquals(expected, inputArgument.getDestinationFilePath());
+    }
+
+    @Test
+    public void shouldBeAbleToDownloadIfSecondArgumentIsAFileName() throws MalformedInputException {
+        String filePath = CURRENT_DIRECTORY + "/customFile.txt";
+        String[] args = new String[]{DOWNLOAD_URL, filePath};
+
+        inputArgument = new CommandLineParser().getInputArguments(args);
+
+        assertEquals(filePath, inputArgument.getDestinationFilePath());
+    }
+
+
+    @Test
     public void shouldBeAbleToExtractDestinationFilePathFromInput(){
         String fileName = "/dynamodb_local_2016-05-17.zip";
         String expected = new File(CURRENT_DIRECTORY).getAbsolutePath()+ fileName;
