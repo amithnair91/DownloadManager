@@ -6,8 +6,6 @@ apply plugin: 'application'
 
 mainClassName = 'com.amith.Driver'
 
-sourceCompatibility = 1.8
-
 repositories {
     mavenCentral()
 }
