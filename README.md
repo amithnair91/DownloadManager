@@ -6,9 +6,9 @@ A Download Manager that can download files over HTTP. This Library supports paus
 
 In order to buid the project use the following command:
 
-./gradlew createJar
+`./gradlew createJar
  OR 
- make -f MakeFile.txt compile
+ make -f MakeFile.txt compile`
  
  
  
@@ -16,10 +16,10 @@ In order to buid the project use the following command:
  
  To download any file use the following command line argument:
  
- java -jar 'build/libs/DownloadManager-all-1.0.jar' <url>  <location>
+ `java -jar 'build/libs/DownloadManager-all-1.0.jar' <url>  <location>
  
  example:  java -jar 'build/libs/DownloadManager-all-1.0.jar' http://dynamodb-local.s3-website-us-west-2.amazonaws.com/dynamodb_local_2016-05-17.zip ./Download
  
  OR
- make -f MakeFile.txt <url>  <location>
+ make -f MakeFile.txt <url>  <location>`
 
